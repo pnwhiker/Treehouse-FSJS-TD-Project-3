@@ -15,9 +15,11 @@ body.onload = function (){
 // Job Role Selection = Other = > Text Input Field Vis On/Off
 
 const jobRoleSelect = document.getElementById("title");
+let roleSelection = jobRoleSelect.value;
+console.log(roleSelection);
 
 jobRoleSelect.addEventListener('change', () => {
-    let roleSelection = jobRoleSelect.value;
+    roleSelection = jobRoleSelect.value;
     console.log(roleSelection);
 
 });
