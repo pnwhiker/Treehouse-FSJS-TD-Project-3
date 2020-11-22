@@ -10,6 +10,7 @@ const emailInput = document.getElementById('email');
 
 body.onload = function (){
     nameInput.focus();
+    shirtColorSelect.disabled = true;
 };
 
 // Job Role Section
@@ -44,6 +45,11 @@ let shirtDesign = shirtDesignSelect.value;
 const shirtColorSelect = document.getElementById('color');
 let shirtColor = shirtColorSelect.value;
 
+shirtDesignSelect.addEventListener('change', () => {
+    shirtColorSelect.disabled = false;
+    
+
+});
 
 // Activities Section
 
