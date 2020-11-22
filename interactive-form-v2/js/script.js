@@ -48,6 +48,7 @@ let shirtColor = shirtColorSelect.value;
 
 shirtDesignSelect.addEventListener('change', () => {
     shirtColorSelect.disabled = false;
+    
     let shirtDesign = shirtDesignSelect.value;
     // console.log(shirtDesign);  Test Line: shirtDesign var contents
 
