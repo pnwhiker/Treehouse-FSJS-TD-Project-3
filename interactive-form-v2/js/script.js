@@ -17,6 +17,8 @@ body.onload = function (){
 const jobRoleSelect = document.getElementById('title');
 
 const otherJobRoleInput = document.getElementById('other-job-role');
+
+
 otherJobRoleInput.style.display = 'none';
 
 let roleSelection = jobRoleSelect.value;
@@ -31,11 +33,7 @@ jobRoleSelect.addEventListener('change', () => {
         otherJobRoleInput.style.display = 'block';
     } else {
         otherJobRoleInput.style.display = 'none';
-    }
-    
-    
-        
-    
+    }   
 
 });
 
