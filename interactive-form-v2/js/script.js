@@ -24,7 +24,8 @@ console.log(`first role selection is: ${roleSelection}`);
 
 jobRoleSelect.addEventListener('change', () => {
     roleSelection = jobRoleSelect.value;
-    console.log(roleSelection);
+    // console.log(roleSelection);  Test Line: roleSelection var contents
+
     if (roleSelection === 'other') {
         otherJobRoleInput.style.display = 'block';
     } else {
@@ -47,7 +48,14 @@ let shirtColor = shirtColorSelect.value;
 
 shirtDesignSelect.addEventListener('change', () => {
     shirtColorSelect.disabled = false;
-    
+    let shirtDesign = shirtDesignSelect.value;
+    // console.log(shirtDesign);  Test Line: shirtDesign var contents
+
+    if (shirtDesign === 'js puns') {
+
+    } else if (shirtDesign === 'heart js') {
+
+    };
 
 });
 
