@@ -54,16 +54,16 @@ shirtDesignSelect.addEventListener('change', () => {
     
     let shirtDesign = shirtDesignSelect.value;
     // console.log(shirtDesign);  Test Line: shirtDesign var contents
-    if (shirtDesign === 'js puns') {
-        console.log('js puns design selected');
+    if          (shirtDesign === 'js puns') {
+        // console.log('js puns design selected');
         shirtColorSelect.options[0].disabled = false;
         shirtColorSelect.options[1].disabled = false;
         shirtColorSelect.options[2].disabled = false;
         shirtColorSelect.options[3].disabled = true;
         shirtColorSelect.options[4].disabled = true;
         shirtColorSelect.options[5].disabled = true;
-    } else if (shirtDesign === 'heart js') {
-        console.log('heart js design selected');
+    } else if   (shirtDesign === 'heart js') {
+        // console.log('heart js design selected');
         shirtColorSelect.options[0].disabled = true;
         shirtColorSelect.options[1].disabled = true;
         shirtColorSelect.options[2].disabled = true;
@@ -77,3 +77,30 @@ shirtDesignSelect.addEventListener('change', () => {
 
 // Activities Section
 
+const activitiesFieldset = document.querySelector('.activities');
+
+const mainConference = document.querySelector(`input[name="all"]`);
+const mainConferenceCost = mainConference.dataset.cost;
+
+const frameworksCourse = document.querySelector(`input[name="js-frameworks"]`);
+const frameworksCourseCost = frameworksCourse.dataset.cost;
+
+const jsLibsCourse = document.querySelector(`input[name="js-libs"]`);
+const jsLibsCourseCost = jsLibsCourse.dataset.cost;
+
+const expressCourse = document.querySelector(`input[name="express"]`);
+const expressCourseCost = expressCourse.dataset.cost;
+
+const nodeCourse = document.querySelector(`input[name="node"]`);
+const nodeCourseCost = nodeCourse.dataset.cost;
+
+const buildToolsCourse = document.querySelector(`input[name="build-tools"]`);
+const buildToolsCourseCost = buildToolsCourse.dataset.cost;
+
+const npmCourse = document.querySelector(`input[name="npm"]`);
+const npmCourseCost = npmCourse.dataset.cost;
+
+activitiesFieldset.addEventListener('change', () => {
+    
+
+});
