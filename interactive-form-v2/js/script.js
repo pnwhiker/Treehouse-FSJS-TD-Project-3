@@ -80,7 +80,7 @@ shirtDesignSelect.addEventListener('change', () => {
 const activitiesFieldset = document.querySelector('.activities');
 
 const mainConference = document.querySelector(`input[name="all"]`);
-const mainConferenceCost = mainConference.dataset.cost;
+const mainConferenceCost = parseInt(mainConference.dataset.cost);
 
 const frameworksCourse = document.querySelector(`input[name="js-frameworks"]`);
 const frameworksCourseCost = frameworksCourse.dataset.cost;
@@ -100,7 +100,15 @@ const buildToolsCourseCost = buildToolsCourse.dataset.cost;
 const npmCourse = document.querySelector(`input[name="npm"]`);
 const npmCourseCost = npmCourse.dataset.cost;
 
-activitiesFieldset.addEventListener('change', () => {
+function costCalculator() {
+    let cost = 0;
     
+    return cost;
+};
+
+activitiesFieldset.addEventListener('change', (event) => {
+    let totalCost = costCalculator();
+    console.log(totalCost);
+
 
 });
