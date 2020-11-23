@@ -53,9 +53,9 @@ shirtDesignSelect.addEventListener('change', () => {
     // console.log(shirtDesign);  Test Line: shirtDesign var contents
 
     if (shirtDesign === 'js puns') {
-
+        console.log('js puns design selected');
     } else if (shirtDesign === 'heart js') {
-
+        console.log('heart js design selected');
     };
 
 });
