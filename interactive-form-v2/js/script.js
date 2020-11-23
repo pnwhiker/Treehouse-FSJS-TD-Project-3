@@ -83,26 +83,29 @@ const mainConference = document.querySelector(`input[name="all"]`);
 const mainConferenceCost = parseInt(mainConference.dataset.cost);
 
 const frameworksCourse = document.querySelector(`input[name="js-frameworks"]`);
-const frameworksCourseCost = frameworksCourse.dataset.cost;
+const frameworksCourseCost = parseInt(frameworksCourse.dataset.cost);
 
 const jsLibsCourse = document.querySelector(`input[name="js-libs"]`);
-const jsLibsCourseCost = jsLibsCourse.dataset.cost;
+const jsLibsCourseCost = parseInt(jsLibsCourse.dataset.cost);
 
 const expressCourse = document.querySelector(`input[name="express"]`);
-const expressCourseCost = expressCourse.dataset.cost;
+const expressCourseCost = parseInt(expressCourse.dataset.cost);
 
 const nodeCourse = document.querySelector(`input[name="node"]`);
-const nodeCourseCost = nodeCourse.dataset.cost;
+const nodeCourseCost = parseInt(nodeCourse.dataset.cost);
 
 const buildToolsCourse = document.querySelector(`input[name="build-tools"]`);
-const buildToolsCourseCost = buildToolsCourse.dataset.cost;
+const buildToolsCourseCost = parseInt(buildToolsCourse.dataset.cost);
 
 const npmCourse = document.querySelector(`input[name="npm"]`);
-const npmCourseCost = npmCourse.dataset.cost;
+const npmCourseCost = parseInt(npmCourse.dataset.cost);
 
 function costCalculator() {
     let cost = 0;
-    
+        if (mainConference.checked) {
+            cost += mainConferenceCost;
+        }
+    console.log(cost);
     return cost;
 };
 
