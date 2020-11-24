@@ -11,6 +11,7 @@ const emailInput = document.getElementById('email');
 body.onload = function (){
     nameInput.focus();
     shirtColorSelect.disabled = true;
+    ccPaymentOption.selected = true;
 };
 
 // Job Role Section
@@ -112,6 +113,10 @@ function costCalculator() {
 activitiesFieldset.addEventListener('change', (event) => {
     let totalCost = costCalculator();
     console.log(totalCost);
-
-
 });
+
+// Payment Section
+
+
+const ccPaymentOption = document.querySelector(`option[value="credit card"]`);
+console.log(ccPaymentOption);
