@@ -122,11 +122,7 @@ const paymentSelection = document.getElementById('payment');
 const ccPaymentOption = document.querySelector(`option[value="credit card"]`);
 const paypalPaymentOption = document.querySelector(`option[value="paypal"]`);
 const bitcoinPaymentOption = document.querySelector(`option[value="bitcoin"]`);
-let paymentOptions = [
-    ccPaymentOption,
-    paypalPaymentOption,
-    bitcoinPaymentOption,
-];
+console.log(ccPaymentOption);
 
 // Payment Form Div(s)
 
@@ -137,31 +133,16 @@ bitcoinPaymentDiv = document.getElementById('bitcoin');
 
 // Payment Form Selection Event Handler(s)
 
-// paymentSelection.addEventListener('change', (event) => { need to change the event listener to see the selectOption
-    console.log(event.target);
-    if (event.target = ccPaymentOption) {
-        ccPaymentOption.disabled = false;
-        ccPaymentDiv.style.display = 'block';
-        paypalPaymentOption.disabled = true;
-        paypalPaymentDiv.style.display = 'none';;
-        bitcoinPaymentOption.disabled = true;
-        bitcoinPaymentDiv.style.display = 'none';
+paymentSelection.addEventListener('change', () => { 
+    if (ccPaymentOption.selected) {
+        console.log('woogity boogity');
+        // ccPaymentOption.disabled = false;
+        // ccPaymentDiv.style.display = 'block';
+        // paypalPaymentOption.disabled = true;
+        // paypalPaymentDiv.style.display = 'none';;
+        // bitcoinPaymentOption.disabled = true;
+        // bitcoinPaymentDiv.style.display = 'none';
 
-    } else if (event.target = paypalPaymentOption) {
-        ccPaymentOption.disabled = true;
-        ccPaymentDiv.style.display = 'none';
-        paypalPaymentOption.disabled = false;
-        paypalPaymentDiv.style.display = `block`;
-        bitcoinPaymentOption.disabled = true;
-        bitcoinPaymentDiv.style.display = 'none';;
-
-    } else if (event.target = bitcoinPaymentOption) {
-        ccPaymentOption.disabled = true;
-        ccPaymentDiv.style.display = 'none';;
-        paypalPaymentOption.disabled = true;
-        paypalPaymentDiv.style.display = 'none';
-        bitcoinPaymentOption.disabled = false;
-        bitcoinPaymentDiv.style.display = 'block';
 
     };
 
