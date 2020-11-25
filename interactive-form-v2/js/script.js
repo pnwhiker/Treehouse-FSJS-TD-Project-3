@@ -47,9 +47,6 @@ let shirtDesign = shirtDesignSelect.value;
 const shirtColorSelect = document.getElementById('color');
 let shirtColor = shirtColorSelect.value;
 
-
-
-
 shirtDesignSelect.addEventListener('change', () => {
     shirtColorSelect.disabled = false;
     
@@ -115,8 +112,21 @@ activitiesFieldset.addEventListener('change', (event) => {
     console.log(totalCost);
 });
 
+
 // Payment Section
 
-
+const paymentSelection = document.getElementById('payment');
 const ccPaymentOption = document.querySelector(`option[value="credit card"]`);
-console.log(ccPaymentOption);
+const paypalPaymentOption = document.querySelector(`option[value="paypal"]`);
+const bitcoinPaymentOption = document.querySelector(`option[value="bitcoin"]`);
+
+let paymentOptions = [
+    ccPaymentOption,
+    paypalPaymentOption,
+    bitcoinPaymentOption,
+];
+
+paymentSelection.addEventListener('change', (e) => {
+    
+    
+})
