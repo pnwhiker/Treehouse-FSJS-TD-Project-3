@@ -12,6 +12,9 @@ body.onload = function (){
     nameInput.focus();
     shirtColorSelect.disabled = true;
     ccPaymentOption.selected = true;
+    paypalPaymentDiv.style.display = 'none';
+    bitcoinPaymentDiv.style.display = 'none';
+
 };
 
 // Job Role Section
@@ -134,7 +137,33 @@ bitcoinPaymentDiv = document.getElementById('bitcoin');
 
 // Payment Form Selection Event Handler(s)
 
-paymentSelection.addEventListener('change', (e) => {
+// paymentSelection.addEventListener('change', (event) => { need to change the event listener to see the selectOption
+    console.log(event.target);
+    if (event.target = ccPaymentOption) {
+        ccPaymentOption.disabled = false;
+        ccPaymentDiv.style.display = 'block';
+        paypalPaymentOption.disabled = true;
+        paypalPaymentDiv.style.display = 'none';;
+        bitcoinPaymentOption.disabled = true;
+        bitcoinPaymentDiv.style.display = 'none';
+
+    } else if (event.target = paypalPaymentOption) {
+        ccPaymentOption.disabled = true;
+        ccPaymentDiv.style.display = 'none';
+        paypalPaymentOption.disabled = false;
+        paypalPaymentDiv.style.display = `block`;
+        bitcoinPaymentOption.disabled = true;
+        bitcoinPaymentDiv.style.display = 'none';;
+
+    } else if (event.target = bitcoinPaymentOption) {
+        ccPaymentOption.disabled = true;
+        ccPaymentDiv.style.display = 'none';;
+        paypalPaymentOption.disabled = true;
+        paypalPaymentDiv.style.display = 'none';
+        bitcoinPaymentOption.disabled = false;
+        bitcoinPaymentDiv.style.display = 'block';
+
+    };
+
     
-    
-})
+});
