@@ -70,7 +70,6 @@ shirtDesignSelect.addEventListener('change', () => {
         shirtColorSelect.options[5].disabled = false;
 
     };
-
 });
 
 // Activities Section
@@ -115,16 +114,25 @@ activitiesFieldset.addEventListener('change', (event) => {
 
 // Payment Section
 
+// Payment Select Menu & Payment Form Variables
 const paymentSelection = document.getElementById('payment');
 const ccPaymentOption = document.querySelector(`option[value="credit card"]`);
 const paypalPaymentOption = document.querySelector(`option[value="paypal"]`);
 const bitcoinPaymentOption = document.querySelector(`option[value="bitcoin"]`);
-
 let paymentOptions = [
     ccPaymentOption,
     paypalPaymentOption,
     bitcoinPaymentOption,
 ];
+
+// Payment Form Div(s)
+
+ccPaymentDiv = document.getElementById('credit-card');
+paypalPaymentDiv = document.getElementById('paypal');
+bitcoinPaymentDiv = document.getElementById('bitcoin');
+
+
+// Payment Form Selection Event Handler(s)
 
 paymentSelection.addEventListener('change', (e) => {
     
