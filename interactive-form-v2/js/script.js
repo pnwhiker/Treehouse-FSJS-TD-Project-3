@@ -133,18 +133,11 @@ bitcoinPaymentDiv = document.getElementById('bitcoin');
 
 // Payment Form Selection Event Handler(s)
 
-paymentSelection.addEventListener('change', () => { 
-    if (ccPaymentOption.selected) {
-        console.log('woogity boogity');
-        // ccPaymentOption.disabled = false;
-        // ccPaymentDiv.style.display = 'block';
-        // paypalPaymentOption.disabled = true;
-        // paypalPaymentDiv.style.display = 'none';;
-        // bitcoinPaymentOption.disabled = true;
-        // bitcoinPaymentDiv.style.display = 'none';
-
-
-    };
-
+paymentSelection.addEventListener('change', (event) => { 
+    let optionPick = event.target.value;
+    // add conditional logic to test for value contents & display
+    // divs based on selection, create function to run first on Load for CC
+    // offload function(s) to other file for better organization? 
     
+
 });
