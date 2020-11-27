@@ -102,10 +102,8 @@ const npmCourseCost = parseInt(npmCourse.dataset.cost);
 
 function costCalculator() {
     let cost = 0;
-        if (mainConference.checked) {
-            cost += mainConferenceCost;
-        }
-    console.log(cost);
+                
+    
     return cost;
 };
 
@@ -114,6 +112,15 @@ activitiesFieldset.addEventListener('change', (event) => {
     console.log(totalCost);
 });
 
+// Activities Accessibility Section
+
+activitiesFieldset.addEventListener('focus', (event) => {
+    
+});
+
+activitiesFieldset.addEventListener('blur', (event) => {
+    
+});
 
 // Payment Section
 
