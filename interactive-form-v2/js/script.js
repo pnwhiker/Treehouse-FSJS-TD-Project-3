@@ -112,15 +112,18 @@ activitiesFieldset.addEventListener('change', (event) => {
     console.log(totalCost);
 });
 
-// Activities Accessibility Section
+// Activities Accessibility Section - Focus & Blur Handler(s)
 
 activitiesFieldset.addEventListener('focus', (event) => {
-    
+    let checkbox = event.target;
+    let checkboxLabel = checkbox.parentNode;
+    console.log(checkbox, checkboxLabel);
 });
 
 activitiesFieldset.addEventListener('blur', (event) => {
     
 });
+
 
 // Payment Section
 
