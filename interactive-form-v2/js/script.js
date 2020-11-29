@@ -24,7 +24,7 @@ const otherJobRoleInput = document.getElementById('other-job-role');
 otherJobRoleInput.style.display = 'none';
 
 let roleSelection = jobRoleSelect.value;
-console.log(`first role selection is: ${roleSelection}`);
+// console.log(`first role selection is: ${roleSelection}`);
 
 jobRoleSelect.addEventListener('change', () => {
     roleSelection = jobRoleSelect.value;
@@ -230,6 +230,12 @@ paymentSelection.addEventListener('change', (event) => {
 });
 
 // Form Element Validation & Testing
+
+form.addEventListener('submit', () => {
+
+    ValidateEmail(emailInput);
+
+};
 
 function ValidateEmail(mail) {
  if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(myForm.emailAddr.value))
