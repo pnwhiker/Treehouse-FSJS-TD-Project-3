@@ -103,7 +103,6 @@ const npmCourseCost = parseInt(npmCourse.dataset.cost);
 
 
 
-
 // Activities Accessibility Section - Focus & Blur Handler(s)
 
 mainConference.addEventListener('focus', (event) => {
@@ -209,19 +208,34 @@ bitcoinPaymentDiv = document.getElementById('bitcoin');
 // Payment Form Selection Event Handler(s)
 
 paymentSelection.addEventListener('change', (event) => { 
+
     let optionPick = event.target.value;
-    
+
     if (optionPick === 'credit card') {
         ccPaymentDiv.style.display = 'block';
         paypalPaymentDiv.style.display = 'none';
         bitcoinPaymentDiv.style.display = 'none';
+
     } else if (optionPick === 'paypal') {
         ccPaymentDiv.style.display = 'none';
         paypalPaymentDiv.style.display = 'block';
         bitcoinPaymentDiv.style.display = 'none';
+
     } else if (optionPick === 'bitcoin') {
         ccPaymentDiv.style.display = 'none';
         paypalPaymentDiv.style.display = 'none';
         bitcoinPaymentDiv.style.display = 'block';
+
     };
 });
+
+// Form Element Validation & Testing
+
+function ValidateEmail(mail) {
+ if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(myForm.emailAddr.value))
+  {
+    return (true)
+  } else {
+    return (false)
+  };
+};
