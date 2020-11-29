@@ -100,28 +100,94 @@ const buildToolsCourseCost = parseInt(buildToolsCourse.dataset.cost);
 const npmCourse = document.querySelector(`input[name="npm"]`);
 const npmCourseCost = parseInt(npmCourse.dataset.cost);
 
-function costCalculator() {
-    let cost = 0;
-                
-    
-    return cost;
-};
 
-activitiesFieldset.addEventListener('change', (event) => {
-    let totalCost = costCalculator();
-    console.log(totalCost);
-});
+
+
 
 // Activities Accessibility Section - Focus & Blur Handler(s)
 
-activitiesFieldset.addEventListener('focus', (event) => {
-    let checkbox = event.target;
-    let checkboxLabel = checkbox.parentNode;
-    console.log(checkbox, checkboxLabel);
+mainConference.addEventListener('focus', (event) => {
+    let beta = event.target;
+    let alpha = beta.parentNode;
+    alpha.className = 'focus';
+});
+mainConference.addEventListener('blur', (event) => {
+    let beta = event.target;
+    let alpha = beta.parentNode;
+    alpha.classList.remove('focus');
+    alpha.className = 'blur';
 });
 
-activitiesFieldset.addEventListener('blur', (event) => {
-    
+frameworksCourse.addEventListener('focus', (event) => {
+    let beta = event.target;
+    let alpha = beta.parentNode;
+    alpha.className = 'focus';
+});
+frameworksCourse.addEventListener('blur', (event) => {
+    let beta = event.target;
+    let alpha = beta.parentNode;
+    alpha.classList.remove('focus');
+    alpha.className = 'blur';
+});
+
+jsLibsCourse.addEventListener('focus', (event) => {
+    let beta = event.target;
+    let alpha = beta.parentNode;
+    alpha.className = 'focus';
+});
+jsLibsCourse.addEventListener('blur', (event) => {
+    let beta = event.target;
+    let alpha = beta.parentNode;
+    alpha.classList.remove('focus');
+    alpha.className = 'blur';
+});
+
+expressCourse.addEventListener('focus', (event) => {
+    let beta = event.target;
+    let alpha = beta.parentNode;
+    alpha.className = 'focus';
+});
+expressCourse.addEventListener('blur', (event) => {
+    let beta = event.target;
+    let alpha = beta.parentNode;
+    alpha.classList.remove('focus');
+    alpha.className = 'blur';
+});
+
+nodeCourse.addEventListener('focus', (event) => {
+    let beta = event.target;
+    let alpha = beta.parentNode;
+    alpha.className = 'focus';
+});
+nodeCourse.addEventListener('blur', (event) => {
+    let beta = event.target;
+    let alpha = beta.parentNode;
+    alpha.classList.remove('focus');
+    alpha.className = 'blur';
+});
+
+buildToolsCourse.addEventListener('focus', (event) => {
+    let beta = event.target;
+    let alpha = beta.parentNode;
+    alpha.className = 'focus';
+});
+buildToolsCourse.addEventListener('blur', (event) => {
+    let beta = event.target;
+    let alpha = beta.parentNode;
+    alpha.classList.remove('focus');
+    alpha.className = 'blur';
+});
+
+npmCourse.addEventListener('focus', (event) => {
+    let beta = event.target;
+    let alpha = beta.parentNode;
+    alpha.className = 'focus';
+});
+npmCourse.addEventListener('blur', (event) => {
+    let beta = event.target;
+    let alpha = beta.parentNode;
+    alpha.classList.remove('focus');
+    alpha.className = 'blur';
 });
 
 
@@ -132,7 +198,6 @@ const paymentSelection = document.getElementById('payment');
 const ccPaymentOption = document.querySelector(`option[value="credit card"]`);
 const paypalPaymentOption = document.querySelector(`option[value="paypal"]`);
 const bitcoinPaymentOption = document.querySelector(`option[value="bitcoin"]`);
-console.log(ccPaymentOption);
 
 // Payment Form Div(s)
 
