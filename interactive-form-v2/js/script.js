@@ -3,7 +3,9 @@
 const form = document.querySelector('form');
 const body = document.querySelector('body');
 const nameInput = document.getElementById('name');
+const userName = nameInput.value;
 const emailInput = document.getElementById('email');
+const userEmail = emailInput.value;
 
 
 // Page Load & Focus Section
@@ -215,33 +217,66 @@ paymentSelection.addEventListener('change', (event) => {
         ccPaymentDiv.style.display = 'block';
         paypalPaymentDiv.style.display = 'none';
         bitcoinPaymentDiv.style.display = 'none';
+        return optionPick;
 
     } else if (optionPick === 'paypal') {
         ccPaymentDiv.style.display = 'none';
         paypalPaymentDiv.style.display = 'block';
         bitcoinPaymentDiv.style.display = 'none';
+        return optionPick;
 
     } else if (optionPick === 'bitcoin') {
         ccPaymentDiv.style.display = 'none';
         paypalPaymentDiv.style.display = 'none';
         bitcoinPaymentDiv.style.display = 'block';
+        return optionPick;
 
     };
 });
 
-// Form Element Validation & Testing
+// Form Element Submit Handler & Input Validation Function(s)
 
 form.addEventListener('submit', () => {
 
-    ValidateEmail(emailInput);
+    // Insert lines to collect CC Info Here;
+    validateUsername(userName);
+    validateEmail(userEmail);
+    if (optionPick == 'credit card') {
+        validateCC_Number(userCCN);
+        validateCVV_Number(userCVV);
+        validateZipcode(zipcode)
+        
+    };
 
 };
 
-function ValidateEmail(mail) {
- if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(myForm.emailAddr.value))
+function validateUsername () {
+
+};
+
+function validateEmail(mail) {
+ if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(mail))
   {
     return (true)
   } else {
     return (false)
   };
+};
+
+// CCN Function IP, needs input validation for CVV & Zipcode, throw-err results per grading criterion
+;
+function validateCC_Number(ccNumber) {
+    if(/^\d{13,16}$/.test(ccNumber)) {
+
+    } else {
+
+    };
+};
+
+function validateCVV_Number(cvvNumber) {
+
+};
+
+function validateZipcode(zipcode) {
+
 };
