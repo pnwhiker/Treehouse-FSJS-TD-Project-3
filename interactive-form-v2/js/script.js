@@ -83,24 +83,31 @@ shirtDesignSelect.addEventListener('change', () => {
 const activitiesFieldset = document.querySelector('.activities');
 
 const mainConference = document.querySelector(`input[name="all"]`);
+let mainConferenceChecked = mainConference.checked;
 // const mainConferenceCost = parseInt(mainConference.dataset.cost);
 
 const frameworksCourse = document.querySelector(`input[name="js-frameworks"]`);
+let frameworksCourseChecked = frameworksCourse.checked;
 // const frameworksCourseCost = parseInt(frameworksCourse.dataset.cost);
 
 const jsLibsCourse = document.querySelector(`input[name="js-libs"]`);
+let jsLibsCourseChecked = jsLibsCourse.checked;
 // const jsLibsCourseCost = parseInt(jsLibsCourse.dataset.cost);
 
 const expressCourse = document.querySelector(`input[name="express"]`);
+let expressCourseChecked = expressCourse.checked;
 // const expressCourseCost = parseInt(expressCourse.dataset.cost);
 
 const nodeCourse = document.querySelector(`input[name="node"]`);
+let nodeCourseChecked = nodeCourse.checked;
 //const nodeCourseCost = parseInt(nodeCourse.dataset.cost);
 
 const buildToolsCourse = document.querySelector(`input[name="build-tools"]`);
+let buildToolsCourseChecked = buildToolsCourse.checked;
 // const buildToolsCourseCost = parseInt(buildToolsCourse.dataset.cost);
 
 const npmCourse = document.querySelector(`input[name="npm"]`);
+let npmCourseChecked = npmCourse.checked;
 // const npmCourseCost = parseInt(npmCourse.dataset.cost);
 
 
@@ -111,13 +118,11 @@ let activitiesArray = activitiesFieldset.querySelectorAll(`input[type = 'checkbo
 let activitySelectedVerification = false;
 
 activitiesFieldset.addEventListener('change', (event) => {
-
-    for (let i=0; i < activitiesArray.length; i++) {
-        console.log(activitiesArray[i].checked);
+    
     }
 });
 
-
+// READ HERE https://www.javascripttutorial.net/javascript-dom/javascript-checkbox/
 
 
 // Activities Accessibility Section - Focus & Blur Handler(s)
