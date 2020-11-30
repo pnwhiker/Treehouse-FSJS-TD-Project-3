@@ -34,7 +34,7 @@ jobRoleSelect.addEventListener('change', () => {
 
     // console.log(roleSelection);  Test Line: roleSelection var contents
 
-    if (roleSelection === 'other') {
+    if (roleSelection == 'other') {
         otherJobRoleInput.style.display = 'block';
     } else {
         otherJobRoleInput.style.display = 'none';
@@ -117,12 +117,19 @@ let npmCourseChecked = npmCourse.checked;
 let activitiesArray = activitiesFieldset.querySelectorAll(`input[type = 'checkbox']`);
 let activitySelectedVerification = false;
 
-activitiesFieldset.addEventListener('change', (event) => {
-    
+function validateCheckedAcitivities (arr) {
+    let activityCount = 0;
+    for (let i=0; i < arr.length; i++) {
+        if (arr[i].checked) {
+            activityCount++;
+        }
     }
-});
+    if (activityCount > 0) {
+        return true;
+    }
+    
+}
 
-// READ HERE https://www.javascripttutorial.net/javascript-dom/javascript-checkbox/
 
 
 // Activities Accessibility Section - Focus & Blur Handler(s)
@@ -259,8 +266,11 @@ paymentSelection.addEventListener('change', (event) => {
 form.addEventListener('submit', () => {
 
     // Insert lines to collect CC Info Here;
+
     validateUsername(userName);
     validateEmail(userEmail);
+    validateCheckedAcitivities(activitiesArray);
+
     if (optionPick == 'credit card') {
         validateCC_Number(userCCN);
         validateCVV_Number(userCVV);
@@ -282,8 +292,8 @@ function validateEmail(mail) {
   };
 };
 
-// CCN Function IP, needs input validation for CVV & Zipcode, throw-err results per grading criterion
-;
+// CCN Function ZIP, needs input validation for CVV & Zipcode, throw-err results per grading criterion
+
 function validateCC_Number(ccNumber) {
     if(/^\d{13,16}$/.test(ccNumber)) {
 
