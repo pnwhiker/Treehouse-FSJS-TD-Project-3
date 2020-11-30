@@ -4,7 +4,7 @@ const form = document.querySelector('form');
 const body = document.querySelector('body');
 const nameInput = document.getElementById('name');
 const userName = nameInput.value;
-const emailInput = document.getElementById('email');
+const emailInput = document.getElementById('mail');
 const userEmail = emailInput.value;
 
 
@@ -29,15 +29,16 @@ let roleSelection = jobRoleSelect.value;
 // console.log(`first role selection is: ${roleSelection}`);
 
 jobRoleSelect.addEventListener('change', () => {
+    
     roleSelection = jobRoleSelect.value;
+
     // console.log(roleSelection);  Test Line: roleSelection var contents
 
     if (roleSelection === 'other') {
         otherJobRoleInput.style.display = 'block';
     } else {
         otherJobRoleInput.style.display = 'none';
-    }   
-
+    };   
 });
 
 
@@ -77,30 +78,44 @@ shirtDesignSelect.addEventListener('change', () => {
     };
 });
 
-// Activities Section
+// Activities & Cost Variable Assignment(s) Section
 
 const activitiesFieldset = document.querySelector('.activities');
 
 const mainConference = document.querySelector(`input[name="all"]`);
-const mainConferenceCost = parseInt(mainConference.dataset.cost);
+// const mainConferenceCost = parseInt(mainConference.dataset.cost);
 
 const frameworksCourse = document.querySelector(`input[name="js-frameworks"]`);
-const frameworksCourseCost = parseInt(frameworksCourse.dataset.cost);
+// const frameworksCourseCost = parseInt(frameworksCourse.dataset.cost);
 
 const jsLibsCourse = document.querySelector(`input[name="js-libs"]`);
-const jsLibsCourseCost = parseInt(jsLibsCourse.dataset.cost);
+// const jsLibsCourseCost = parseInt(jsLibsCourse.dataset.cost);
 
 const expressCourse = document.querySelector(`input[name="express"]`);
-const expressCourseCost = parseInt(expressCourse.dataset.cost);
+// const expressCourseCost = parseInt(expressCourse.dataset.cost);
 
 const nodeCourse = document.querySelector(`input[name="node"]`);
-const nodeCourseCost = parseInt(nodeCourse.dataset.cost);
+//const nodeCourseCost = parseInt(nodeCourse.dataset.cost);
 
 const buildToolsCourse = document.querySelector(`input[name="build-tools"]`);
-const buildToolsCourseCost = parseInt(buildToolsCourse.dataset.cost);
+// const buildToolsCourseCost = parseInt(buildToolsCourse.dataset.cost);
 
 const npmCourse = document.querySelector(`input[name="npm"]`);
-const npmCourseCost = parseInt(npmCourse.dataset.cost);
+// const npmCourseCost = parseInt(npmCourse.dataset.cost);
+
+
+// Activitiy - Checkbox Selected Check, >= 1 Event Selected Validation
+
+
+let activitiesArray = activitiesFieldset.querySelectorAll(`input[type = 'checkbox']`);
+let activitySelectedVerification = false;
+
+activitiesFieldset.addEventListener('change', (event) => {
+
+    for (let i=0; i < activitiesArray.length; i++) {
+        console.log(activitiesArray[i].checked);
+    }
+});
 
 
 
@@ -245,10 +260,9 @@ form.addEventListener('submit', () => {
         validateCC_Number(userCCN);
         validateCVV_Number(userCVV);
         validateZipcode(zipcode)
-        
     };
 
-};
+});
 
 function validateUsername () {
 
