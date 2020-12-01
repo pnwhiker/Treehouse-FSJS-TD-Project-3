@@ -17,6 +17,7 @@ body.onload = function (){
     ccPaymentOption.selected = true;
     paypalPaymentDiv.style.display = 'none';
     bitcoinPaymentDiv.style.display = 'none';
+    let activityCount = 0;
 
 };
 
@@ -237,7 +238,6 @@ paymentSelection.addEventListener('change', (event) => {
         paypalPaymentDiv.style.display = 'none';
         bitcoinPaymentDiv.style.display = 'block';
         return optionPick;
-
     };
 });
 
@@ -249,9 +249,8 @@ form.addEventListener('submit', (event) => {
 
     validateUsername(userName);
     validateEmail(userEmail);
-    console.log(validateCheckedAcitivities(activitiesArray));
+    // console.log(validateCheckedAcitivities(activitiesArray)); ~* Test Line *~
     
-
     if (optionPick == 'credit card') {
         validateCC_Number(userCCN);
         validateCVV_Number(userCVV);
@@ -261,8 +260,8 @@ form.addEventListener('submit', (event) => {
 });
 
 
-function validateUsername () {
-    if () {
+function validateUsername(user) {
+    if (user.length > 0) {
         return true;
     } else {
         return false;
@@ -279,7 +278,6 @@ function validateEmail(mail) {
 };
 
 function validateCheckedAcitivities(arr) {
-    let activityCount = 0;
     for (let i=0; i < arr.length; i++) {
         if (arr[i].checked) {
             activityCount++;
@@ -311,5 +309,9 @@ function validateCVV_Number(cvvNumber) {
     };
 
 function validateZipcode(zipcode) {
-
+    if (/^[0-9]{5}(?:-[0-9]{4})?$/.test(zipcode)) {
+        return true;
+    } else {
+        return false;
+    }
 };
