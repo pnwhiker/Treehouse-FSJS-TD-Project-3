@@ -8,6 +8,7 @@ const emailInput = document.getElementById('mail');
 const userEmail = emailInput.value;
 
 
+
 // Page Load & Focus Section
 
 body.onload = function (){
@@ -81,6 +82,7 @@ shirtDesignSelect.addEventListener('change', () => {
 // Activities & Cost Variable Assignment(s) Section
 
 const activitiesFieldset = document.querySelector('.activities');
+const activitiesArray = activitiesFieldset.querySelectorAll(`input[type = 'checkbox']`);
 
 const mainConference = document.querySelector(`input[name="all"]`);
 let mainConferenceChecked = mainConference.checked;
@@ -109,27 +111,6 @@ let buildToolsCourseChecked = buildToolsCourse.checked;
 const npmCourse = document.querySelector(`input[name="npm"]`);
 let npmCourseChecked = npmCourse.checked;
 // const npmCourseCost = parseInt(npmCourse.dataset.cost);
-
-
-// Activitiy - Checkbox Selected Check, >= 1 Event Selected Validation
-
-
-let activitiesArray = activitiesFieldset.querySelectorAll(`input[type = 'checkbox']`);
-let activitySelectedVerification = false;
-
-function validateCheckedAcitivities (arr) {
-    let activityCount = 0;
-    for (let i=0; i < arr.length; i++) {
-        if (arr[i].checked) {
-            activityCount++;
-        }
-    }
-    if (activityCount > 0) {
-        return true;
-    }
-    
-}
-
 
 
 // Activities Accessibility Section - Focus & Blur Handler(s)
@@ -233,7 +214,6 @@ ccPaymentDiv = document.getElementById('credit-card');
 paypalPaymentDiv = document.getElementById('paypal');
 bitcoinPaymentDiv = document.getElementById('bitcoin');
 
-
 // Payment Form Selection Event Handler(s)
 
 paymentSelection.addEventListener('change', (event) => { 
@@ -263,13 +243,14 @@ paymentSelection.addEventListener('change', (event) => {
 
 // Form Element Submit Handler & Input Validation Function(s)
 
-form.addEventListener('submit', () => {
-
+form.addEventListener('submit', (event) => {
+    event.preventDefault(); 
     // Insert lines to collect CC Info Here;
 
     validateUsername(userName);
     validateEmail(userEmail);
-    validateCheckedAcitivities(activitiesArray);
+    console.log(validateCheckedAcitivities(activitiesArray));
+    
 
     if (optionPick == 'credit card') {
         validateCC_Number(userCCN);
@@ -279,8 +260,13 @@ form.addEventListener('submit', () => {
 
 });
 
-function validateUsername () {
 
+function validateUsername () {
+    if () {
+        return true;
+    } else {
+        return false;
+    }
 };
 
 function validateEmail(mail) {
@@ -292,19 +278,37 @@ function validateEmail(mail) {
   };
 };
 
+function validateCheckedAcitivities(arr) {
+    let activityCount = 0;
+    for (let i=0; i < arr.length; i++) {
+        if (arr[i].checked) {
+            activityCount++;
+        };
+    if (activityCount > 0) {
+        return true;
+        } else {
+            return false;
+        };    
+    };
+};
+
 // CCN Function ZIP, needs input validation for CVV & Zipcode, throw-err results per grading criterion
 
 function validateCC_Number(ccNumber) {
     if(/^\d{13,16}$/.test(ccNumber)) {
-
+        return true;
     } else {
-
+        return false;
     };
 };
 
 function validateCVV_Number(cvvNumber) {
-
-};
+    if (/^[0-9]{3, 4}$/.test(cvvNumber)) {
+        return true;
+        } else {
+            return false;
+        }
+    };
 
 function validateZipcode(zipcode) {
 
