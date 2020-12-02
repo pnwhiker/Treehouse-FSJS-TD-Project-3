@@ -24,6 +24,7 @@ body.onload = function (){
 
 };
 
+
 // Job Role Section
 
 /**
@@ -50,6 +51,7 @@ jobRoleSelect.addEventListener('change', () => {
         otherJobRoleInput.style.display = 'none';
     };   
 });
+
 
 
 // Shirt Size & Design Section
