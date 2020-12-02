@@ -1,4 +1,6 @@
-// General Purpose Variables Section
+// Treehouse FSJS TD Project 3, Responsive Form & Input Validaton
+
+// General Purpose Variable Section
 
 const form = document.querySelector('form');
 const body = document.querySelector('body');
@@ -6,10 +8,11 @@ const nameInput = document.getElementById('name');
 const userName = nameInput.value;
 const emailInput = document.getElementById('mail');
 const userEmail = emailInput.value;
+const uzerZip = document.getElementById('zip');
+const userCCN = document.getElementById('cc-num');
 
 
-
-// Page Load & Focus Section
+// Page Load & Initial Focus Section
 
 body.onload = function (){
     nameInput.focus();
@@ -23,6 +26,14 @@ body.onload = function (){
 
 // Job Role Section
 
+/**
+ * Establish Job Role Variable(s) for Value
+ * and text input block.  Listen for Change event
+ * & hide or show text input block based on
+ * user-selected role.
+ * 
+ */
+
 const jobRoleSelect = document.getElementById('title');
 const otherJobRoleInput = document.getElementById('other-job-role');
 otherJobRoleInput.style.display = 'none';
@@ -33,9 +44,6 @@ let roleSelection = jobRoleSelect.value;
 jobRoleSelect.addEventListener('change', () => {
     
     roleSelection = jobRoleSelect.value;
-
-    // console.log(roleSelection);  Test Line: roleSelection var contents
-
     if (roleSelection == 'other') {
         otherJobRoleInput.style.display = 'block';
     } else {
@@ -241,24 +249,22 @@ paymentSelection.addEventListener('change', (event) => {
     };
 });
 
+
 // Form Element Submit Handler & Input Validation Function(s)
 
 form.addEventListener('submit', (event) => {
-    event.preventDefault(); 
-    // Insert lines to collect CC Info Here;
-
     validateUsername(userName);
     validateEmail(userEmail);
-    // console.log(validateCheckedAcitivities(activitiesArray)); ~* Test Line *~
-    
+
     if (optionPick == 'credit card') {
         validateCC_Number(userCCN);
         validateCVV_Number(userCVV);
-        validateZipcode(zipcode)
+        validateZipcode(userZip)
     };
 
 });
 
+// Form Validation Function(s)
 
 function validateUsername(user) {
     if (user.length > 0) {
@@ -289,8 +295,6 @@ function validateCheckedAcitivities(arr) {
         };    
     };
 };
-
-// CCN Function ZIP, needs input validation for CVV & Zipcode, throw-err results per grading criterion
 
 function validateCC_Number(ccNumber) {
     if(/^\d{13,16}$/.test(ccNumber)) {
