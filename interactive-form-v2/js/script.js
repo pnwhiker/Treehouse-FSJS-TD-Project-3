@@ -14,21 +14,20 @@ const userCCN = document.getElementById('cc-num');
 
 // Page Load & Initial Focus Section
 
-body.onload = function (){
+body.onload = function() {
     nameInput.focus();
     shirtColorSelect.disabled = true;
     ccPaymentOption.selected = true;
     paypalPaymentDiv.style.display = 'none';
     bitcoinPaymentDiv.style.display = 'none';
     let activityCount = 0;
-
 };
 
 
 // Job Role Section
 
 /**
- * Establish Job Role Variable(s) for Value
+ * Establish Job Role Variable(s) for selected option
  * and text input block.  Listen for Change event
  * & hide or show text input block based on
  * user-selected role.
@@ -53,7 +52,6 @@ jobRoleSelect.addEventListener('change', () => {
 });
 
 
-
 // Shirt Size & Design Section
 
 const shirtSizeSelect = document.getElementById('size');
@@ -69,8 +67,8 @@ shirtDesignSelect.addEventListener('change', () => {
     shirtColorSelect.disabled = false;
     
     let shirtDesign = shirtDesignSelect.value;
-    // console.log(shirtDesign);  Test Line: shirtDesign var contents
-    if          (shirtDesign === 'js puns') {
+
+    if (shirtDesign === 'js puns') {
         // console.log('js puns design selected');
         shirtColorSelect.options[0].disabled = false;
         shirtColorSelect.options[1].disabled = false;
@@ -78,7 +76,7 @@ shirtDesignSelect.addEventListener('change', () => {
         shirtColorSelect.options[3].disabled = true;
         shirtColorSelect.options[4].disabled = true;
         shirtColorSelect.options[5].disabled = true;
-    } else if   (shirtDesign === 'heart js') {
+        } else if (shirtDesign === 'heart js') {
         // console.log('heart js design selected');
         shirtColorSelect.options[0].disabled = true;
         shirtColorSelect.options[1].disabled = true;
@@ -255,13 +253,21 @@ paymentSelection.addEventListener('change', (event) => {
 // Form Element Submit Handler & Input Validation Function(s)
 
 form.addEventListener('submit', (event) => {
-    validateUsername(userName);
-    validateEmail(userEmail);
+    
+    if (!validateUsername(userName)){
+        event.preventDefault();
+    } else if (!validateEmail(userEmail)){
+        event.preventDefault();
+    }
 
     if (optionPick == 'credit card') {
-        validateCC_Number(userCCN);
-        validateCVV_Number(userCVV);
-        validateZipcode(userZip)
+        if (!validateCC_Number(userCCN)) {
+            event.preventDefault();
+        } else if (!validateCVV_Number(userCVV)) {
+            event.preventDefault();
+        } else if (!validateZipcode(userZip)) {
+            event.preventDefault();
+        };
     };
 
 });
@@ -312,7 +318,7 @@ function validateCVV_Number(cvvNumber) {
         } else {
             return false;
         }
-    };
+};
 
 function validateZipcode(zipcode) {
     if (/^[0-9]{5}(?:-[0-9]{4})?$/.test(zipcode)) {
