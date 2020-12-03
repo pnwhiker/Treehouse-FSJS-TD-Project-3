@@ -285,8 +285,11 @@ function validateUsername(user) {
 function validateEmail(mail) {
  if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(mail))
   {
+    console.log("EMAIL VALIDATION PASSED")
     return (true)
+    
   } else {
+      console.log("EMAIL VALIDATION FAILED")
     return (false)
   };
 };
@@ -297,8 +300,10 @@ function validateCheckedAcitivities(arr) {
             activityCount++;
         };
     if (activityCount > 0) {
+        console.log("ACTIVITY VALIDATION PASSED")
         return true;
         } else {
+            console.log("ACTIVITY VALIDATION FAILED")
             return false;
         };    
     };
@@ -306,24 +311,30 @@ function validateCheckedAcitivities(arr) {
 
 function validateCC_Number(ccNumber) {
     if(/^\d{13,16}$/.test(ccNumber)) {
+        console.log("CCN VALIDATION PASSED")
         return true;
     } else {
+        console.log("CCN VALIDATION FAILED")
         return false;
     };
 };
 
 function validateCVV_Number(cvvNumber) {
     if (/^[0-9]{3, 4}$/.test(cvvNumber)) {
+        console.log("CVV VALIDATION PASSED")
         return true;
         } else {
+            console.log("CCN VALIDATION FAILED")
             return false;
         }
 };
 
 function validateZipcode(zipcode) {
     if (/^[0-9]{5}(?:-[0-9]{4})?$/.test(zipcode)) {
+        console.log("ZIPCODE VALIDATION PASSED")
         return true;
     } else {
+        console.log("ZIPCODE VALIDATION FAILED")
         return false;
     }
 };
