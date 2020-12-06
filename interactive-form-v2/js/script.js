@@ -71,22 +71,22 @@ shirtDesignSelect.addEventListener('change', () => {
     if (shirtDesign === 'js puns') {
         // console.log('js puns design selected');
         shirtColorSelect.options[0].selected = true;
-        shirtColorSelect.options[0].disabled = false;
-        shirtColorSelect.options[1].disabled = false;
-        shirtColorSelect.options[2].disabled = false;
-        shirtColorSelect.options[3].disabled = true;
-        shirtColorSelect.options[4].disabled = true;
-        shirtColorSelect.options[5].disabled = true;
+        shirtColorSelect.options[0].hidden = false;
+        shirtColorSelect.options[1].hidden = false;
+        shirtColorSelect.options[2].hidden = false;
+        shirtColorSelect.options[3].hidden = true;
+        shirtColorSelect.options[4].hidden = true;
+        shirtColorSelect.options[5].hidden = true;
     };
     if (shirtDesign === 'heart js') {
         // console.log('heart js design selected');
-        shirtColorSelect.options[0].disabled = true;
-        shirtColorSelect.options[1].disabled = true;
-        shirtColorSelect.options[2].disabled = true;
+        shirtColorSelect.options[0].hidden = true;
+        shirtColorSelect.options[1].hidden = true;
+        shirtColorSelect.options[2].hidden = true;
         shirtColorSelect.options[3].selected = true;
-        shirtColorSelect.options[3].disabled = false;
-        shirtColorSelect.options[4].disabled = false;
-        shirtColorSelect.options[5].disabled = false;
+        shirtColorSelect.options[3].hidden = false;
+        shirtColorSelect.options[4].hidden = false;
+        shirtColorSelect.options[5].hidden = false;
 
     };
 });
