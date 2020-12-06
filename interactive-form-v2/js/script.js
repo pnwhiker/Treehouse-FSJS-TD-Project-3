@@ -98,39 +98,55 @@ const activitiesFieldset = document.querySelector('.activities');
 const activitiesArray = activitiesFieldset.querySelectorAll(`input[type = 'checkbox']`);
 
 const mainConference = document.querySelector(`input[name="all"]`);
-let mainConferenceChecked = mainConference.checked;
-// const mainConferenceCost = parseInt(mainConference.dataset.cost);
+const mainConferenceCost = parseInt(mainConference.dataset.cost);
 
 const frameworksCourse = document.querySelector(`input[name="js-frameworks"]`);
-let frameworksCourseChecked = frameworksCourse.checked;
-// const frameworksCourseCost = parseInt(frameworksCourse.dataset.cost);
+const frameworksCourseCost = parseInt(frameworksCourse.dataset.cost);
 
 const jsLibsCourse = document.querySelector(`input[name="js-libs"]`);
-let jsLibsCourseChecked = jsLibsCourse.checked;
-// const jsLibsCourseCost = parseInt(jsLibsCourse.dataset.cost);
+const jsLibsCourseCost = parseInt(jsLibsCourse.dataset.cost);
 
 const expressCourse = document.querySelector(`input[name="express"]`);
-let expressCourseChecked = expressCourse.checked;
-// const expressCourseCost = parseInt(expressCourse.dataset.cost);
+const expressCourseCost = parseInt(expressCourse.dataset.cost);
 
 const nodeCourse = document.querySelector(`input[name="node"]`);
-let nodeCourseChecked = nodeCourse.checked;
-//const nodeCourseCost = parseInt(nodeCourse.dataset.cost);
+const nodeCourseCost = parseInt(nodeCourse.dataset.cost);
 
 const buildToolsCourse = document.querySelector(`input[name="build-tools"]`);
-let buildToolsCourseChecked = buildToolsCourse.checked;
-// const buildToolsCourseCost = parseInt(buildToolsCourse.dataset.cost);
+const buildToolsCourseCost = parseInt(buildToolsCourse.dataset.cost);
 
 const npmCourse = document.querySelector(`input[name="npm"]`);
-let npmCourseChecked = npmCourse.checked;
-// const npmCourseCost = parseInt(npmCourse.dataset.cost);
+const npmCourseCost = parseInt(npmCourse.dataset.cost);
+
+// console.log(
+//         mainConferenceCost,
+//         frameworksCourseCost,
+//         jsLibsCourseCost,
+//         expressCourseCost,
+//         nodeCourseCost,
+//         buildToolsCourseCost,
+//         npmCourseCost
+//     );
 
 // Adding & Updating Total Cost for Activities
-
 
 let activitiesTotalCost = document.createElement("p");
 activitiesTotalCost.innerHTML = "TEST";
 activitiesFieldset.appendChild(activitiesTotalCost);
+
+activitiesFieldset.addEventListener('change', (event) => {
+    if (frameworksCourse.checked === true) {
+        expressCourse.disabled = true;
+    } else {
+        expressCourse.disabled = false;
+    };
+    if (jsLibsCourse.checked === true) {
+        nodeCourse.disabled = true;
+    } else {
+        nodeCourse.disabled = false;
+    };
+
+})
 
 // Activities Accessibility Section - Focus & Blur Handler(s)
 
