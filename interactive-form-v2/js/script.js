@@ -70,17 +70,20 @@ shirtDesignSelect.addEventListener('change', () => {
 
     if (shirtDesign === 'js puns') {
         // console.log('js puns design selected');
+        shirtColorSelect.options[0].selected = true;
         shirtColorSelect.options[0].disabled = false;
         shirtColorSelect.options[1].disabled = false;
         shirtColorSelect.options[2].disabled = false;
         shirtColorSelect.options[3].disabled = true;
         shirtColorSelect.options[4].disabled = true;
         shirtColorSelect.options[5].disabled = true;
-        } else if (shirtDesign === 'heart js') {
+    };
+    if (shirtDesign === 'heart js') {
         // console.log('heart js design selected');
         shirtColorSelect.options[0].disabled = true;
         shirtColorSelect.options[1].disabled = true;
         shirtColorSelect.options[2].disabled = true;
+        shirtColorSelect.options[3].selected = true;
         shirtColorSelect.options[3].disabled = false;
         shirtColorSelect.options[4].disabled = false;
         shirtColorSelect.options[5].disabled = false;
