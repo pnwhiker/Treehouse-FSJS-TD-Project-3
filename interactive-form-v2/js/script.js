@@ -17,6 +17,7 @@ const userCCN = document.getElementById('cc-num');
 body.onload = function() {
     nameInput.focus();
     shirtColorSelect.disabled = true;
+    selectPaymentOption.hidden = true;
     ccPaymentOption.selected = true;
     paypalPaymentDiv.style.display = 'none';
     bitcoinPaymentDiv.style.display = 'none';
@@ -124,6 +125,12 @@ const npmCourse = document.querySelector(`input[name="npm"]`);
 let npmCourseChecked = npmCourse.checked;
 // const npmCourseCost = parseInt(npmCourse.dataset.cost);
 
+// Adding & Updating Total Cost for Activities
+
+
+let activitiesTotalCost = document.createElement("p");
+activitiesTotalCost.innerHTML = "TEST";
+activitiesFieldset.appendChild(activitiesTotalCost);
 
 // Activities Accessibility Section - Focus & Blur Handler(s)
 
@@ -216,6 +223,7 @@ npmCourse.addEventListener('blur', (event) => {
 
 // Payment Select Menu & Payment Form Variables
 const paymentSelection = document.getElementById('payment');
+const selectPaymentOption = document.querySelector(`option[value="select method"]`);
 const ccPaymentOption = document.querySelector(`option[value="credit card"]`);
 const paypalPaymentOption = document.querySelector(`option[value="paypal"]`);
 const bitcoinPaymentOption = document.querySelector(`option[value="bitcoin"]`);
