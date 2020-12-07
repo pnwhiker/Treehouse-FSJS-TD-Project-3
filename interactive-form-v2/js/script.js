@@ -8,9 +8,11 @@ const nameInput = document.getElementById('name');
 const userName = nameInput.value;
 const emailInput = document.getElementById('mail');
 const userEmail = emailInput.value;
-const uzerZip = document.getElementById('zip');
-const userCCN = document.getElementById('cc-num');
+const userZip = document.getElementById('zip').value;
+const userCCN = document.getElementById('cc-num').value;
+const userCVV = document.getElementById('cvv').value;
 let conferenceCost = 0;
+let activityCount = 0;
 
 
 // Page Load & Initial Focus Section
@@ -21,28 +23,18 @@ body.onload = function() {
     selectPaymentOption.hidden = true;
     ccPaymentOption.selected = true;
     paypalPaymentDiv.style.display = 'none';
-    bitcoinPaymentDiv.style.display = 'none';
-    let activityCount = 0;
-        
+    bitcoinPaymentDiv.style.display = 'none';        
 };
 
 
 // Job Role Section
 
-/**
- * Establish Job Role Variable(s) for selected option
- * and text input block.  Listen for Change event
- * & hide or show text input block based on
- * user-selected role.
- * 
- */
-
 const jobRoleSelect = document.getElementById('title');
 const otherJobRoleInput = document.getElementById('other-job-role');
 otherJobRoleInput.style.display = 'none';
-
 let roleSelection = jobRoleSelect.value;
-// console.log(`first role selection is: ${roleSelection}`);
+
+// Event Listener for Show or Hide on Text Input Field
 
 jobRoleSelect.addEventListener('change', () => {
     
@@ -55,7 +47,7 @@ jobRoleSelect.addEventListener('change', () => {
 });
 
 
-// Shirt Size & Design Section
+// Shirt Size & Design Section, Show / Hide Colors based on Design Selected
 
 const shirtSizeSelect = document.getElementById('size');
 let shirtSize = shirtSizeSelect.value;
@@ -266,7 +258,7 @@ const ccPaymentOption = document.querySelector(`option[value="credit card"]`);
 const paypalPaymentOption = document.querySelector(`option[value="paypal"]`);
 const bitcoinPaymentOption = document.querySelector(`option[value="bitcoin"]`);
 
-// Payment Form Div(s) Assignment
+// Payment Form Div(s) Declaration
 
 ccPaymentDiv = document.getElementById('credit-card');
 paypalPaymentDiv = document.getElementById('paypal');
@@ -305,23 +297,29 @@ form.addEventListener('submit', (event) => {
     
     if (!validateUsername(userName)){
         event.preventDefault();
-    } else if (!validateEmail(userEmail)){
+    };
+    if (!validateEmail(userEmail)) {
+        event.preventDefault();
+    };
+
+    if (!validateCheckedAcitivities(activitiesArray)) {
         event.preventDefault();
     }
 
-    if (optionPick == 'credit card') {
+    if (ccPaymentOption.selected) {
         if (!validateCC_Number(userCCN)) {
             event.preventDefault();
-        } else if (!validateCVV_Number(userCVV)) {
+        };
+        if (!validateCVV_Number(userCVV)) {
             event.preventDefault();
-        } else if (!validateZipcode(userZip)) {
+        };
+        if (!validateZipcode(userZip)) {
             event.preventDefault();
         };
     };
-
 });
 
-// Form Validation Function(s)
+// Form Input Data Validation Function(s)
 
 function validateUsername(user) {
     if (user.length > 0) {
@@ -373,7 +371,7 @@ function validateCVV_Number(cvvNumber) {
         console.log("CVV VALIDATION PASSED")
         return true;
         } else {
-            console.log("CCN VALIDATION FAILED")
+            console.log("CVV VALIDATION FAILED")
             return false;
         }
 };
