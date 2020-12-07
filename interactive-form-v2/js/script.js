@@ -10,6 +10,7 @@ const emailInput = document.getElementById('mail');
 const userEmail = emailInput.value;
 const uzerZip = document.getElementById('zip');
 const userCCN = document.getElementById('cc-num');
+let conferenceCost = 0;
 
 
 // Page Load & Initial Focus Section
@@ -22,6 +23,7 @@ body.onload = function() {
     paypalPaymentDiv.style.display = 'none';
     bitcoinPaymentDiv.style.display = 'none';
     let activityCount = 0;
+        
 };
 
 
@@ -118,37 +120,56 @@ const buildToolsCourseCost = parseInt(buildToolsCourse.dataset.cost);
 const npmCourse = document.querySelector(`input[name="npm"]`);
 const npmCourseCost = parseInt(npmCourse.dataset.cost);
 
-// console.log(
-//         mainConferenceCost,
-//         frameworksCourseCost,
-//         jsLibsCourseCost,
-//         expressCourseCost,
-//         nodeCourseCost,
-//         buildToolsCourseCost,
-//         npmCourseCost
-//     );
 
-// Adding & Updating Total Cost for Activities
+// Adding HTML Element to Dispaly Total Cost for Activities
 
 let activitiesTotalCost = document.createElement("p");
-activitiesTotalCost.innerHTML = "TEST";
-activitiesFieldset.appendChild(activitiesTotalCost);
+activitiesTotalCost.innerHTML = `Total Cost: $ 0`;
+activitiesFieldset.appendChild(activitiesTotalCost); 
+
+// Event Listener for Change(s) to Conference Activity Selection(s)
 
 activitiesFieldset.addEventListener('change', (event) => {
+
+    // Frameworks Course vs. Express Course Schedule Conflict Resolver
     if (frameworksCourse.checked === true) {
         expressCourse.disabled = true;
     } else {
         expressCourse.disabled = false;
     };
+    if (expressCourse.checked === true) {
+        frameworksCourse.disabled = true;
+    } else {
+        frameworksCourse.disabled = false;
+    };
+
+    // JS Libraries Course vs. Node Course Schedule Conflict Resolver
     if (jsLibsCourse.checked === true) {
         nodeCourse.disabled = true;
     } else {
         nodeCourse.disabled = false;
     };
+    if (nodeCourse.checked === true) {
+        jsLibsCourse.disabled = true;
+    } else {
+        jsLibsCourse.disabled = false;
+    };
+    
+    // Total Conference Cost Generator
+    conferenceCost = 0;
 
-})
+    for (let i = 0; i < activitiesArray.length; i++) {
+        if (activitiesArray[i].checked === true) {            
+            conferenceCost += +activitiesArray[i].dataset.cost;
+        };        
+    };
 
-// Activities Accessibility Section - Focus & Blur Handler(s)
+    activitiesTotalCost.innerHTML = `Total Cost: $ ${conferenceCost}`
+
+});
+
+
+// Conference Activities Accessibility Section - Focus & Blur Handler(s)
 
 mainConference.addEventListener('focus', (event) => {
     let beta = event.target;
@@ -237,14 +258,15 @@ npmCourse.addEventListener('blur', (event) => {
 
 // Payment Section
 
-// Payment Select Menu & Payment Form Variables
+// Payment Select Menu & Payment Form Variables Declaration
+
 const paymentSelection = document.getElementById('payment');
 const selectPaymentOption = document.querySelector(`option[value="select method"]`);
 const ccPaymentOption = document.querySelector(`option[value="credit card"]`);
 const paypalPaymentOption = document.querySelector(`option[value="paypal"]`);
 const bitcoinPaymentOption = document.querySelector(`option[value="bitcoin"]`);
 
-// Payment Form Div(s)
+// Payment Form Div(s) Assignment
 
 ccPaymentDiv = document.getElementById('credit-card');
 paypalPaymentDiv = document.getElementById('paypal');
