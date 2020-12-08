@@ -290,6 +290,37 @@ paymentSelection.addEventListener('change', (event) => {
     };
 });
 
+// Error Messaging Elements - Creation, Placement, Styles
+
+function createErrorFlag(errMsg, errParentNode) {
+    let errorFlag = document.createElement('p');
+    errorFlag.innerHTML = `A Valid ${errMsg} is Required`;
+    errorFlag.style.textAlign = "center";
+    errorFlag.style.fontWeight = "bold";
+    errorFlag.style.fontSize = "large";
+    errorFlag.style.color = "red";
+    errParentNode.insertAdjacentElement("afterend", errorFlag);
+
+};
+
+createErrorFlag("User Name", nameInput);
+
+// const userNameErrorFlag = document.createElement('p');
+// userNameErrorFlag.innerHTML = "A Valid User Name is Required";
+// userNameErrorFlag.style.textAlign = "center";
+// userNameErrorFlag.style.fontWeight = "bold";
+// userNameErrorFlag.style.fontSize = "large";
+// userNameErrorFlag.style.color = "red";
+// nameInput.insertAdjacentElement("afterend", userNameErrorFlag);
+
+// const userEmailErrorFlag = document.createElement('p');
+// userEmailErrorFlag.innerHTML = "A Valid User Email is Required";
+// userEmailErrorFlag.style.textAlign = "center";
+// userEmailErrorFlag.style.fontWeight = "bold";
+// userEmailErrorFlag.style.fontSize = "large";
+// userEmailErrorFlag.style.color = "red";
+// emailInput.insertAdjacentElement("afterend", userEmailErrorFlag);
+
 
 // Form Element Submit Handler & Input Validation Function(s)
 
@@ -298,6 +329,7 @@ form.addEventListener('submit', (event) => {
     if (!validateUsername(userName)){
         event.preventDefault();
     };
+
     if (!validateEmail(userEmail)) {
         event.preventDefault();
     };
@@ -316,6 +348,7 @@ form.addEventListener('submit', (event) => {
         if (!validateZipcode(userZip)) {
             event.preventDefault();
         };
+
     };
 });
 
