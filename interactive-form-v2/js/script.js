@@ -34,6 +34,7 @@ const otherJobRoleInput = document.getElementById('other-job-role');
 otherJobRoleInput.style.display = 'none';
 let roleSelection = jobRoleSelect.value;
 
+
 // Event Listener for Show or Hide on Text Input Field
 
 jobRoleSelect.addEventListener('change', () => {
@@ -86,6 +87,7 @@ shirtDesignSelect.addEventListener('change', () => {
     };
 });
 
+
 // Activities & Cost Variable Assignment(s) Section
 
 const activitiesFieldset = document.querySelector('.activities');
@@ -118,6 +120,7 @@ const npmCourseCost = parseInt(npmCourse.dataset.cost);
 let activitiesTotalCost = document.createElement("p");
 activitiesTotalCost.innerHTML = `Total Cost: $ 0`;
 activitiesFieldset.appendChild(activitiesTotalCost); 
+
 
 // Event Listener for Change(s) to Conference Activity Selection(s)
 
@@ -258,11 +261,13 @@ const ccPaymentOption = document.querySelector(`option[value="credit card"]`);
 const paypalPaymentOption = document.querySelector(`option[value="paypal"]`);
 const bitcoinPaymentOption = document.querySelector(`option[value="bitcoin"]`);
 
+
 // Payment Form Div(s) Declaration
 
 ccPaymentDiv = document.getElementById('credit-card');
 paypalPaymentDiv = document.getElementById('paypal');
 bitcoinPaymentDiv = document.getElementById('bitcoin');
+
 
 // Payment Form Selection Event Handler(s)
 
@@ -290,62 +295,53 @@ paymentSelection.addEventListener('change', (event) => {
     };
 });
 
-// Error Messaging Elements - Creation, Placement, Styles
 
-function createErrorFlag(errMsg, errParentNode) {
+// Error Messaging Elements - Function; Create, Style, Append
+
+function createErrorFlag(mode, errMsg, errParentNode) {
     let errorFlag = document.createElement('p');
-    errorFlag.innerHTML = `A Valid ${errMsg} is Required`;
     errorFlag.style.textAlign = "center";
     errorFlag.style.fontWeight = "bold";
     errorFlag.style.fontSize = "large";
     errorFlag.style.color = "red";
+    if (mode === 1) {
+        errorFlag.innerHTML = `A Valid ${errMsg} is Required`;
+    } else if (mode === 2) {
+        errorFlag.innerHTML = `At least one Activity Must Be Selected`;
+    };
     errParentNode.insertAdjacentElement("afterend", errorFlag);
-
 };
-
-createErrorFlag("User Name", nameInput);
-
-// const userNameErrorFlag = document.createElement('p');
-// userNameErrorFlag.innerHTML = "A Valid User Name is Required";
-// userNameErrorFlag.style.textAlign = "center";
-// userNameErrorFlag.style.fontWeight = "bold";
-// userNameErrorFlag.style.fontSize = "large";
-// userNameErrorFlag.style.color = "red";
-// nameInput.insertAdjacentElement("afterend", userNameErrorFlag);
-
-// const userEmailErrorFlag = document.createElement('p');
-// userEmailErrorFlag.innerHTML = "A Valid User Email is Required";
-// userEmailErrorFlag.style.textAlign = "center";
-// userEmailErrorFlag.style.fontWeight = "bold";
-// userEmailErrorFlag.style.fontSize = "large";
-// userEmailErrorFlag.style.color = "red";
-// emailInput.insertAdjacentElement("afterend", userEmailErrorFlag);
-
 
 // Form Element Submit Handler & Input Validation Function(s)
 
 form.addEventListener('submit', (event) => {
     
     if (!validateUsername(userName)){
+        createErrorFlag(1, "User Name", nameInput);
         event.preventDefault();
     };
 
     if (!validateEmail(userEmail)) {
+        createErrorFlag(1, "User Email", emailInput);
         event.preventDefault();
     };
 
     if (!validateCheckedAcitivities(activitiesArray)) {
+        createErrorFlag(2, null, activitiesTotalCost);
         event.preventDefault();
     }
 
     if (ccPaymentOption.selected) {
         if (!validateCC_Number(userCCN)) {
+            createErrorFlag(1, "Credit Card Number", ccPaymentDiv);
             event.preventDefault();
         };
         if (!validateCVV_Number(userCVV)) {
+            createErrorFlag(1, "Card Verification Number", ccPaymentDiv)
             event.preventDefault();
         };
         if (!validateZipcode(userZip)) {
+            createErrorFlag(1, "Billing Zip Code", ccPaymentDiv)
             event.preventDefault();
         };
 
@@ -379,6 +375,8 @@ function validateCheckedAcitivities(arr) {
         if (arr[i].checked) {
             activityCount++;
         };
+    };
+    
     if (activityCount > 0) {
         console.log("ACTIVITY VALIDATION PASSED")
         return true;
@@ -386,7 +384,6 @@ function validateCheckedAcitivities(arr) {
             console.log("ACTIVITY VALIDATION FAILED")
             return false;
         };    
-    };
 };
 
 function validateCC_Number(ccNumber) {
