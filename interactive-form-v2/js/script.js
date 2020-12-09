@@ -5,15 +5,8 @@
 const form = document.querySelector('form');
 const body = document.querySelector('body');
 const nameInput = document.getElementById('name');
-const userName = nameInput.value;
-const emailInput = document.getElementById('mail');
-const userEmail = emailInput.value;
-const userZip = document.getElementById('zip').value;
-const userCCN = document.getElementById('cc-num').value;
-const userCVV = document.getElementById('cvv').value;
 let conferenceCost = 0;
 let activityCount = 0;
-
 
 // Page Load & Initial Focus Section
 
@@ -315,8 +308,16 @@ function createErrorFlag(mode, errMsg, errParentNode) {
 // Form Element Submit Handler & Input Validation Function(s)
 
 form.addEventListener('submit', (event) => {
+
+    let userName = nameInput.value;
+    const emailInput = document.getElementById('mail');
+    let userEmail = emailInput.value;
+    let userZip = document.getElementById('zip').value;
+    let userCCN = document.getElementById('cc-num').value;
+    let userCVV = document.getElementById('cvv').value;
     
-    if (!validateUsername(userName)){
+    if (validateUsername(userName) == false){
+        console.log(userName);
         createErrorFlag(1, "User Name", nameInput);
         event.preventDefault();
     };
@@ -351,9 +352,12 @@ form.addEventListener('submit', (event) => {
 // Form Input Data Validation Function(s)
 
 function validateUsername(user) {
-    if (user.length > 0) {
+    console.log(user);
+    if (user.length) {
+        console.log("USERNAME VALIDATION PASSED")
         return true;
     } else {
+        console.log("USERNAME VALIDATION FAILED")
         return false;
     }
 };
