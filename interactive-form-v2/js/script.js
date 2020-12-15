@@ -16,7 +16,8 @@ body.onload = function() {
     selectPaymentOption.hidden = true;
     ccPaymentOption.selected = true;
     paypalPaymentDiv.style.display = 'none';
-    bitcoinPaymentDiv.style.display = 'none';        
+    bitcoinPaymentDiv.style.display = 'none';
+    createErrorFlags();        
 };
 
 
@@ -305,7 +306,30 @@ function createErrorFlag(mode, errMsg, errParentNode) {
     errParentNode.insertAdjacentElement("afterend", errorFlag);
 };
 
+function createErrorFlags() {
+    let usernameErrorFlag = document.createElement('p')
+    usernameErrorFlag.style.textAlign = "center";
+    usernameErrorFlag.style.fontWeight = "bold";
+    usernameErrorFlag.style.fontSize = "large";
+    usernameErrorFlag.style.color = "red";
+    usernameErrorFlag.innerHTML = "A valid username is required for submission."
+    nameInput.insertAdjacentElement("afterend", usernameErrorFlag);
+    usernameErrorFlag.style.display = "none";
+
+}
+
+
+
 // Form Element Submit Handler & Input Validation Function(s)
+
+nameInput.addEventListener('input', () => {
+    while (nameInput.value.length = 0) {
+        createErrorFlag(1, "User Name", nameInput);
+    }
+}); 
+
+
+
 
 form.addEventListener('submit', (event) => {
 
@@ -316,11 +340,11 @@ form.addEventListener('submit', (event) => {
     let userCCN = document.getElementById('cc-num').value;
     let userCVV = document.getElementById('cvv').value;
     
-    if (validateUsername(userName) == false){
-        console.log(userName);
-        createErrorFlag(1, "User Name", nameInput);
-        event.preventDefault();
-    };
+    // if (validateUsername(userName) == false){
+    //     console.log(userName);
+    //     createErrorFlag(1, "User Name", nameInput);
+    //     event.preventDefault();
+    // };
 
     if (!validateEmail(userEmail)) {
         createErrorFlag(1, "User Email", emailInput);
