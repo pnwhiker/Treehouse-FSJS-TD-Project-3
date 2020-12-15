@@ -5,6 +5,13 @@
 const form = document.querySelector('form');
 const body = document.querySelector('body');
 const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('mail');
+const zipcodeInput = document.getElementById('zip');
+const ccNumInput = document.getElementById('cc-num');
+const cvvNumInput = document.getElementById('cvv');
+
+
+
 let conferenceCost = 0;
 let activityCount = 0;
 
@@ -307,6 +314,7 @@ function createErrorFlag(mode, errMsg, errParentNode) {
 };
 
 function createErrorFlags() {
+
     let usernameErrorFlag = document.createElement('p')
     usernameErrorFlag.style.textAlign = "center";
     usernameErrorFlag.style.fontWeight = "bold";
@@ -314,6 +322,15 @@ function createErrorFlags() {
     usernameErrorFlag.style.color = "red";
     usernameErrorFlag.innerHTML = "A valid username is required for submission."
     nameInput.insertAdjacentElement("afterend", usernameErrorFlag);
+    usernameErrorFlag.style.display = "none";
+
+    let userEmailErrorFlag = document.createElement('p')
+    userEmailErrorFlag.style.textAlign = "center";
+    userEmailErrorFlag.style.fontWeight = "bold";
+    userEmailErrorFlag.style.fontSize = "large";
+    userEmailErrorFlag.style.color = "red";
+    userEmailErrorFlag.innerHTML = "A valid email is required for submission."
+    emailInput.insertAdjacentElement("afterend", usernameErrorFlag);
     usernameErrorFlag.style.display = "none";
 
 }
