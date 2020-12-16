@@ -9,9 +9,6 @@ const emailInput = document.getElementById('mail');
 const zipcodeInput = document.getElementById('zip');
 const ccNumInput = document.getElementById('cc-num');
 const cvvNumInput = document.getElementById('cvv');
-
-
-
 let conferenceCost = 0;
 let activityCount = 0;
 
@@ -299,20 +296,6 @@ paymentSelection.addEventListener('change', (event) => {
 
 // Error Messaging Elements - Function; Create, Style, Append
 
-function createErrorFlag(mode, errMsg, errParentNode) {
-    let errorFlag = document.createElement('p');
-    errorFlag.style.textAlign = "center";
-    errorFlag.style.fontWeight = "bold";
-    errorFlag.style.fontSize = "large";
-    errorFlag.style.color = "red";
-    if (mode === 1) {
-        errorFlag.innerHTML = `A Valid ${errMsg} is Required`;
-    } else if (mode === 2) {
-        errorFlag.innerHTML = `At least one Activity Must Be Selected`;
-    };
-    errParentNode.insertAdjacentElement("afterend", errorFlag);
-};
-
 function createErrorFlags() {
 
     let usernameErrorFlag = document.createElement('p')
@@ -330,23 +313,46 @@ function createErrorFlags() {
     userEmailErrorFlag.style.fontSize = "large";
     userEmailErrorFlag.style.color = "red";
     userEmailErrorFlag.innerHTML = "A valid email is required for submission."
-    emailInput.insertAdjacentElement("afterend", usernameErrorFlag);
-    usernameErrorFlag.style.display = "none";
+    emailInput.insertAdjacentElement("afterend", userEmailErrorFlag);
+    userEmailErrorFlag.style.display = "none";
 
-}
+    let userZipErrorFlag = document.createElement('p')
+    userZipErrorFlag.style.textAlign = "center";
+    userZipErrorFlag.style.fontWeight = "bold";
+    userZipErrorFlag.style.fontSize = "large";
+    userZipErrorFlag.style.color = "red";
+    userZipErrorFlag.innerHTML = "A valid Zipcode is required for submission."
+    ccPaymentDiv.insertAdjacentElement("afterend", userZipErrorFlag);
+    userZipErrorFlag.style.display = "none";
 
+    let userCCN_ErrorFlag = document.createElement('p')
+    userCCN_ErrorFlag.style.textAlign = "center";
+    userCCN_ErrorFlag.style.fontWeight = "bold";
+    userCCN_ErrorFlag.style.fontSize = "large";
+    userCCN_ErrorFlag.style.color = "red";
+    userCCN_ErrorFlag.innerHTML = "A valid Credit Card Number is required for submission."
+    ccPaymentDiv.insertAdjacentElement("afterend", userCCN_ErrorFlag);
+    userCCN_ErrorFlag.style.display = "none";
+
+    let userCVV_ErrorFlag = document.createElement('p')
+    userCVV_ErrorFlag.style.textAlign = "center";
+    userCVV_ErrorFlag.style.fontWeight = "bold";
+    userCVV_ErrorFlag.style.fontSize = "large";
+    userCVV_ErrorFlag.style.color = "red";
+    userCVV_ErrorFlag.innerHTML = "A valid Card Verification Number is required for submission."
+    ccPaymentDiv.insertAdjacentElement("afterend", userCVV_ErrorFlag);
+    userCVV_ErrorFlag.style.display = "none";
+
+};
 
 
 // Form Element Submit Handler & Input Validation Function(s)
 
 nameInput.addEventListener('input', () => {
     while (nameInput.value.length = 0) {
-        createErrorFlag(1, "User Name", nameInput);
+        ;
     }
 }); 
-
-
-
 
 form.addEventListener('submit', (event) => {
 
