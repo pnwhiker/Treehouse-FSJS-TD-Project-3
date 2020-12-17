@@ -345,12 +345,20 @@ function createErrorFlags() {
 
 };
 
+form.addEventListener('change', (event) => {
+
+    
+
+});
 
 //Form Element Submit Handler & Input Validation Function(s)
 
-form.addEventListener('submit', () => {
+form.addEventListener('submit', (event) => {
     console.log('submit');
+    event.preventDefault();
 })
+
+
 
 
 
