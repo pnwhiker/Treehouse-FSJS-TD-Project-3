@@ -346,57 +346,15 @@ function createErrorFlags() {
 };
 
 
-// Form Element Submit Handler & Input Validation Function(s)
+//Form Element Submit Handler & Input Validation Function(s)
 
-nameInput.addEventListener('input', () => {
-    while (nameInput.value.length = 0) {
-        ;
-    }
-}); 
+form.addEventListener('submit', () => {
+    console.log('submit');
+})
 
-form.addEventListener('submit', (event) => {
 
-    let userName = nameInput.value;
-    const emailInput = document.getElementById('mail');
-    let userEmail = emailInput.value;
-    let userZip = document.getElementById('zip').value;
-    let userCCN = document.getElementById('cc-num').value;
-    let userCVV = document.getElementById('cvv').value;
-    
-    // if (validateUsername(userName) == false){
-    //     console.log(userName);
-    //     createErrorFlag(1, "User Name", nameInput);
-    //     event.preventDefault();
-    // };
 
-    if (!validateEmail(userEmail)) {
-        createErrorFlag(1, "User Email", emailInput);
-        event.preventDefault();
-    };
-
-    if (!validateCheckedAcitivities(activitiesArray)) {
-        createErrorFlag(2, null, activitiesTotalCost);
-        event.preventDefault();
-    }
-
-    if (ccPaymentOption.selected) {
-        if (!validateCC_Number(userCCN)) {
-            createErrorFlag(1, "Credit Card Number", ccPaymentDiv);
-            event.preventDefault();
-        };
-        if (!validateCVV_Number(userCVV)) {
-            createErrorFlag(1, "Card Verification Number", ccPaymentDiv)
-            event.preventDefault();
-        };
-        if (!validateZipcode(userZip)) {
-            createErrorFlag(1, "Billing Zip Code", ccPaymentDiv)
-            event.preventDefault();
-        };
-
-    };
-});
-
-// Form Input Data Validation Function(s)
+//Form Input Data Validation Function(s)
 
 function validateUsername(user) {
     console.log(user);
