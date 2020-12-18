@@ -252,8 +252,6 @@ npmCourse.addEventListener('blur', (event) => {
 });
 
 
-// Payment Section
-
 // Payment Select Menu & Payment Form Variables Declaration
 
 const paymentSelection = document.querySelector('.credit-card');
@@ -290,7 +288,7 @@ paymentSelection.addEventListener('change', (event) => {
 });
 
 
-// Error Messaging Elements - Function; Create, Style, Append
+// Error Flag Function; Create -> Style -> Structuring
 
 function createErrorFlag(mode, errMsg, errParentNode) {
     let errorFlag = document.createElement('p');
@@ -307,6 +305,8 @@ function createErrorFlag(mode, errMsg, errParentNode) {
     errorFlag.style.display = "none";
     return errorFlag;
 };
+
+// Error Messaging Flags Creation & Variable Declaration / Assignment(s)
 
 let usernameErrorFlag = createErrorFlag(1, "User Name", nameInput);
 let userEmailErrorFlag = createErrorFlag(1, "User Email", emailInput);
@@ -327,25 +327,31 @@ form.addEventListener('submit', (event) => {
     let userCVV = document.getElementById('cvv').value;
     
     if (validateUsername(userName) == false){
+        usernameErrorFlag.style.display = "block";
         event.preventDefault();
     };
 
-    if (!validateEmail(userEmail)) {
+    if (validateEmail(userEmail) === false) {
+        userEmailErrorFlag.style.display = "block";
         event.preventDefault();
     };
 
-    if (!validateCheckedAcitivities(activitiesArray)) {
+    if (validateCheckedAcitivities(activitiesArray) === false) {
+        userActivitiesErrorFlag.style.display = "block";
         event.preventDefault();
-    }
+    };
 
     if (ccPaymentOption.selected) {
-        if (!validateCC_Number(userCCN)) {
+        if (validateCC_Number(userCCN) === false) {
+            userCCNErrorFlag.style.display = "block";
             event.preventDefault();
         };
-        if (!validateCVV_Number(userCVV)) {
+        if (validateCVV_Number(userCVV) === false) {
+            userCVNErrorFlag.style.display = "block";
             event.preventDefault();
         };
-        if (!validateZipcode(userZip)) {
+        if (validateZipcode(userZip) === false) {
+            userZipcodeErrorFlag.style.display = "block";
             event.preventDefault();
         };
 
@@ -369,11 +375,11 @@ function validateUsername(user) {
 function validateEmail(mail) {
  if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(mail))
   {
-    console.log("EMAIL VALIDATION PASSED")
+    //console.log("EMAIL VALIDATION PASSED")
     return (true)
     
   } else {
-      console.log("EMAIL VALIDATION FAILED")
+      //console.log("EMAIL VALIDATION FAILED")
     return (false)
   };
 };
@@ -386,40 +392,40 @@ function validateCheckedAcitivities(arr) {
     };
     
     if (activityCount > 0) {
-        console.log("ACTIVITY VALIDATION PASSED")
+        //console.log("ACTIVITY VALIDATION PASSED")
         return true;
         } else {
-            console.log("ACTIVITY VALIDATION FAILED")
+            //console.log("ACTIVITY VALIDATION FAILED")
             return false;
         };    
 };
 
 function validateCC_Number(ccNumber) {
     if(/^\d{13,16}$/.test(ccNumber)) {
-        console.log("CCN VALIDATION PASSED")
+        //console.log("CCN VALIDATION PASSED")
         return true;
     } else {
-        console.log("CCN VALIDATION FAILED")
+        //console.log("CCN VALIDATION FAILED")
         return false;
     };
 };
 
 function validateCVV_Number(cvvNumber) {
     if (/^[0-9]{3}$/.test(cvvNumber)) {
-        console.log("CVV VALIDATION PASSED")
+        //console.log("CVV VALIDATION PASSED")
         return true;
         } else {
-            console.log("CVV VALIDATION FAILED")
+            //console.log("CVV VALIDATION FAILED")
             return false;
         }
 };
 
 function validateZipcode(zipcode) {
     if (/^[0-9]{5}(?:-[0-9]{4})?$/.test(zipcode)) {
-        console.log("ZIPCODE VALIDATION PASSED")
+        //console.log("ZIPCODE VALIDATION PASSED")
         return true;
     } else {
-        console.log("ZIPCODE VALIDATION FAILED")
+        //console.log("ZIPCODE VALIDATION FAILED")
         return false;
     }
 };
