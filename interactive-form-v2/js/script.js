@@ -1,6 +1,6 @@
 // Treehouse FSJS TD Project 3, Responsive Form & Input Validaton
 
-// General Purpose Variable Section
+// General Purpose Variable Declarrations
 
 const form = document.querySelector('form');
 const body = document.querySelector('body');
@@ -11,6 +11,10 @@ const ccNumInput = document.getElementById('cc-num');
 const cvvNumInput = document.getElementById('cvv');
 let conferenceCost = 0;
 let activityCount = 0;
+let ccPaymentDiv = document.getElementById('credit-card');
+let paypalPaymentDiv = document.getElementById('paypal');
+let bitcoinPaymentDiv = document.getElementById('bitcoin');
+
 
 // Page Load & Initial Focus Section
 
@@ -21,11 +25,10 @@ body.onload = function() {
     ccPaymentOption.selected = true;
     paypalPaymentDiv.style.display = 'none';
     bitcoinPaymentDiv.style.display = 'none';
-    createErrorFlags();        
 };
 
 
-// Job Role Section
+// Job Role Variable Declarations
 
 const jobRoleSelect = document.getElementById('title');
 const otherJobRoleInput = document.getElementById('other-job-role');
@@ -253,7 +256,7 @@ npmCourse.addEventListener('blur', (event) => {
 
 // Payment Select Menu & Payment Form Variables Declaration
 
-const paymentSelection = document.getElementById('payment');
+const paymentSelection = document.querySelector('.credit-card');
 const selectPaymentOption = document.querySelector(`option[value="select method"]`);
 const ccPaymentOption = document.querySelector(`option[value="credit card"]`);
 const paypalPaymentOption = document.querySelector(`option[value="paypal"]`);
@@ -262,9 +265,7 @@ const bitcoinPaymentOption = document.querySelector(`option[value="bitcoin"]`);
 
 // Payment Form Div(s) Declaration
 
-ccPaymentDiv = document.getElementById('credit-card');
-paypalPaymentDiv = document.getElementById('paypal');
-bitcoinPaymentDiv = document.getElementById('bitcoin');
+
 
 
 // Payment Form Selection Event Handler(s)
@@ -295,82 +296,79 @@ paymentSelection.addEventListener('change', (event) => {
 
 
 // Error Messaging Elements - Function; Create, Style, Append
-
-function createErrorFlags() {
-
-    let usernameErrorFlag = document.createElement('p')
-    usernameErrorFlag.style.textAlign = "center";
-    usernameErrorFlag.style.fontWeight = "bold";
-    usernameErrorFlag.style.fontSize = "large";
-    usernameErrorFlag.style.color = "red";
-    usernameErrorFlag.innerHTML = "A valid username is required for submission."
-    nameInput.insertAdjacentElement("afterend", usernameErrorFlag);
-    usernameErrorFlag.style.display = "none";
-
-    let userEmailErrorFlag = document.createElement('p')
-    userEmailErrorFlag.style.textAlign = "center";
-    userEmailErrorFlag.style.fontWeight = "bold";
-    userEmailErrorFlag.style.fontSize = "large";
-    userEmailErrorFlag.style.color = "red";
-    userEmailErrorFlag.innerHTML = "A valid email is required for submission."
-    emailInput.insertAdjacentElement("afterend", userEmailErrorFlag);
-    userEmailErrorFlag.style.display = "none";
-
-    let userZipErrorFlag = document.createElement('p')
-    userZipErrorFlag.style.textAlign = "center";
-    userZipErrorFlag.style.fontWeight = "bold";
-    userZipErrorFlag.style.fontSize = "large";
-    userZipErrorFlag.style.color = "red";
-    userZipErrorFlag.innerHTML = "A valid Zipcode is required for submission."
-    ccPaymentDiv.insertAdjacentElement("afterend", userZipErrorFlag);
-    userZipErrorFlag.style.display = "none";
-
-    let userCCN_ErrorFlag = document.createElement('p')
-    userCCN_ErrorFlag.style.textAlign = "center";
-    userCCN_ErrorFlag.style.fontWeight = "bold";
-    userCCN_ErrorFlag.style.fontSize = "large";
-    userCCN_ErrorFlag.style.color = "red";
-    userCCN_ErrorFlag.innerHTML = "A valid Credit Card Number is required for submission."
-    ccPaymentDiv.insertAdjacentElement("afterend", userCCN_ErrorFlag);
-    userCCN_ErrorFlag.style.display = "none";
-
-    let userCVV_ErrorFlag = document.createElement('p')
-    userCVV_ErrorFlag.style.textAlign = "center";
-    userCVV_ErrorFlag.style.fontWeight = "bold";
-    userCVV_ErrorFlag.style.fontSize = "large";
-    userCVV_ErrorFlag.style.color = "red";
-    userCVV_ErrorFlag.innerHTML = "A valid Card Verification Number is required for submission."
-    ccPaymentDiv.insertAdjacentElement("afterend", userCVV_ErrorFlag);
-    userCVV_ErrorFlag.style.display = "none";
-
+function createErrorFlag(mode, errMsg, errParentNode) {
+    let errorFlag = document.createElement('p');
+    errorFlag.style.textAlign = "center";
+    errorFlag.style.fontWeight = "bold";
+    errorFlag.style.fontSize = "large";
+    errorFlag.style.color = "red";
+    if (mode === 1) {
+        errorFlag.innerHTML = `A Valid ${errMsg} is Required`;
+    } else if (mode === 2) {
+        errorFlag.innerHTML = `At least one Activity Must Be Selected`;
+    };
+    errParentNode.insertAdjacentElement("afterend", errorFlag);
+    errorFlag.style.display = "none";
+    return errorFlag;
 };
 
-form.addEventListener('change', (event) => {
+let usernameErrorFlag = createErrorFlag(1, "User Name", nameInput);
+usernameErrorFlag.style.display = "block";
+console.log(usernameErrorFlag);
 
-    
-
-});
-
-//Form Element Submit Handler & Input Validation Function(s)
+// Form Element Submit Handler & Input Validation Function(s)
 
 form.addEventListener('submit', (event) => {
-    console.log('submit');
-    event.preventDefault();
-})
 
+    let userName = nameInput.value;
+    let userEmail = emailInput.value;
+    let userZip = document.getElementById('zip').value;
+    let userCCN = document.getElementById('cc-num').value;
+    let userCVV = document.getElementById('cvv').value;
+    
+    if (validateUsername(userName) == false){
+        console.log(userName);
+        
+        event.preventDefault();
+    };
 
+    if (!validateEmail(userEmail)) {
+        createErrorFlag(1, "User Email", emailInput);
+        event.preventDefault();
+    };
 
+    if (!validateCheckedAcitivities(activitiesArray)) {
+        createErrorFlag(2, null, activitiesTotalCost);
+        event.preventDefault();
+    }
+
+    if (ccPaymentOption.selected) {
+        if (!validateCC_Number(userCCN)) {
+            createErrorFlag(1, "Credit Card Number", ccPaymentDiv);
+            event.preventDefault();
+        };
+        if (!validateCVV_Number(userCVV)) {
+            createErrorFlag(1, "Card Verification Number", ccPaymentDiv)
+            event.preventDefault();
+        };
+        if (!validateZipcode(userZip)) {
+            createErrorFlag(1, "Billing Zip Code", ccPaymentDiv)
+            event.preventDefault();
+        };
+
+    };
+});
 
 
 //Form Input Data Validation Function(s)
 
 function validateUsername(user) {
     console.log(user);
-    if (user.length) {
-        console.log("USERNAME VALIDATION PASSED")
+    if (user.length > 0) {
+        //console.log("USERNAME VALIDATION PASSED")
         return true;
     } else {
-        console.log("USERNAME VALIDATION FAILED")
+        //console.log("USERNAME VALIDATION FAILED")
         return false;
     }
 };
@@ -414,7 +412,7 @@ function validateCC_Number(ccNumber) {
 };
 
 function validateCVV_Number(cvvNumber) {
-    if (/^[0-9]{3, 4}$/.test(cvvNumber)) {
+    if (/^[0-9]{3}$/.test(cvvNumber)) {
         console.log("CVV VALIDATION PASSED")
         return true;
         } else {
