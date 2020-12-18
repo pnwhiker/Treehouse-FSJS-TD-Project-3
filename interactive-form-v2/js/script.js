@@ -263,11 +263,6 @@ const paypalPaymentOption = document.querySelector(`option[value="paypal"]`);
 const bitcoinPaymentOption = document.querySelector(`option[value="bitcoin"]`);
 
 
-// Payment Form Div(s) Declaration
-
-
-
-
 // Payment Form Selection Event Handler(s)
 
 paymentSelection.addEventListener('change', (event) => { 
@@ -296,6 +291,7 @@ paymentSelection.addEventListener('change', (event) => {
 
 
 // Error Messaging Elements - Function; Create, Style, Append
+
 function createErrorFlag(mode, errMsg, errParentNode) {
     let errorFlag = document.createElement('p');
     errorFlag.style.textAlign = "center";
@@ -313,8 +309,12 @@ function createErrorFlag(mode, errMsg, errParentNode) {
 };
 
 let usernameErrorFlag = createErrorFlag(1, "User Name", nameInput);
-usernameErrorFlag.style.display = "block";
-console.log(usernameErrorFlag);
+let userEmailErrorFlag = createErrorFlag(1, "User Email", emailInput);
+let userActivitiesErrorFlag = createErrorFlag(2, null, activitiesTotalCost);
+let userCCNErrorFlag = createErrorFlag(1, "Credit Card Number", ccPaymentDiv);
+let userCVNErrorFlag = createErrorFlag(1, "Card Verification Number", ccPaymentDiv)
+let userZipcodeErrorFlag = createErrorFlag(1, "Billing Zip Code", ccPaymentDiv);
+
 
 // Form Element Submit Handler & Input Validation Function(s)
 
@@ -327,32 +327,25 @@ form.addEventListener('submit', (event) => {
     let userCVV = document.getElementById('cvv').value;
     
     if (validateUsername(userName) == false){
-        console.log(userName);
-        
         event.preventDefault();
     };
 
     if (!validateEmail(userEmail)) {
-        createErrorFlag(1, "User Email", emailInput);
         event.preventDefault();
     };
 
     if (!validateCheckedAcitivities(activitiesArray)) {
-        createErrorFlag(2, null, activitiesTotalCost);
         event.preventDefault();
     }
 
     if (ccPaymentOption.selected) {
         if (!validateCC_Number(userCCN)) {
-            createErrorFlag(1, "Credit Card Number", ccPaymentDiv);
             event.preventDefault();
         };
         if (!validateCVV_Number(userCVV)) {
-            createErrorFlag(1, "Card Verification Number", ccPaymentDiv)
             event.preventDefault();
         };
         if (!validateZipcode(userZip)) {
-            createErrorFlag(1, "Billing Zip Code", ccPaymentDiv)
             event.preventDefault();
         };
 
